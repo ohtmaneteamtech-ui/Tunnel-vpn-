@@ -1,0 +1,47 @@
+class MainActivity : AppCompatActivity() {
+    private var isConnected = false
+    private var selectedServer: VpnServer? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val btnConnect = findViewById<Button>(R.id.btn_connect)
+        val serverList = findViewById<RecyclerView>(R.id.rv_servers)
+
+        // Initialize Server List
+        val servers = loadServersFromJson()
+        val adapter = ServerAdapter(servers) { server ->
+            selectedServer = server
+            updateServerUi(server)
+        }
+        serverList.adapter = adapter
+
+        btnConnect.setOnClickListener {
+            if (isConnected) disconnectVpn() else connectVpn()
+        }
+    }
+
+    private fun connectVpn() {
+        if (selectedServer == null) {
+            Toast.makeText(this, "Select a server first", Toast.LENGTH_SHORT).show()
+            return
+        }
+        
+        // Transition to Connecting UI
+        btnConnect.text = "CONNECTING..."
+        
+        // Background logic for SSH/OpenVPN would be invoked here via VpnService
+        Handler(Looper.getMainLooper()).postDelayed({
+            isConnected = true
+            btnConnect.text = "CONNECTED"
+            btnConnect.setBackgroundResource(R.drawable.bg_power_button_green)
+        }, 2000)
+    }
+
+    private fun disconnectVpn() {
+        isConnected = false
+        btnConnect.text = "OFFLINE"
+        btnConnect.setBackgroundResource(R.drawable.bg_power_button_red)
+    }
+}
