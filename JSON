@@ -1,0 +1,22 @@
+[
+  {
+    "id": "us_ny_1",
+    "country": "United States",
+    "flag": "🇺🇸",
+    "name": "New York Premium #1",
+    "ping": 42,
+    "protocol": "OpenVPN",
+    "config": "vpn_us_1.ovpn",
+    "port": 1194
+  },
+  {
+    "id": "de_fra_4",
+    "country": "Germany",
+    "flag": "🇩🇪",
+    "name": "Frankfurt - Secure SSH",
+    "ping": 18,
+    "protocol": "SSH",
+    "host": "93.184.216.34",
+    "port": 22
+  }
+]
