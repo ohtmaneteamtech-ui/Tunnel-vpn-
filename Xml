@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#050505">
+
+    <!-- Header Section -->
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="24dp"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_shield"
+            android:tint="#8B5CF6"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nexus VPN"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:layout_marginStart="12dp"
+            android:textStyle="bold"/>
+    </RelativeLayout>
+
+    <!-- Connect Button Section -->
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_above="@+id/server_drawer">
+        
+        <View
+            android:id="@+id/pulse_ring"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:background="@drawable/bg_circle_pulse" />
+
+        <Button
+            android:id="@+id/btn_connect"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:background="@drawable/bg_power_button"
+            android:text="OFFLINE"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:fontFamily="sans-serif-black" />
+    </FrameLayout>
+
+    <!-- Server List Section (Drawer style) -->
+    <LinearLayout
+        android:id="@+id/server_drawer"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bg_server_list"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Location"
+            android:textColor="#888888"
+            android:textAllCaps="true"
+            android:textSize="12sp"
+            android:layout_marginBottom="16dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_servers"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+</RelativeLayout>
